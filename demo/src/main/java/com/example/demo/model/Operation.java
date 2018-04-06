@@ -12,6 +12,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class Operation implements Serializable {
@@ -21,6 +23,7 @@ public abstract class Operation implements Serializable {
 	private Long numeroOperation;
 	private Date dateOperation;
 	private double montant;
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="CODE_CPTE")
 	private Compte compte;

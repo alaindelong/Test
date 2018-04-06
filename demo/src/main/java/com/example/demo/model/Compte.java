@@ -15,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE_CPTE", discriminatorType=DiscriminatorType.STRING, length=2)
@@ -24,9 +27,11 @@ public abstract class Compte implements Serializable {
 	private String codeCompte;
 	private double solde;
 	private Date dateCreation;
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="CODE_CLI")
 	private Client client;
+	@JsonBackReference
 	@OneToMany(mappedBy="compte")
 	private Collection<Operation> operations;
 	public String getCodeCompte() {

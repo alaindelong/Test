@@ -1,5 +1,7 @@
 package com.example.demo.metier;
 
+import java.util.Collection;
+
 import org.springframework.data.domain.Page;
 
 import com.example.demo.model.Client;
@@ -14,5 +16,7 @@ public interface BanqueService {
 	public Client addClient(Client c);
 	public Compte creerCompte(Compte c);
 	public Page<Operation> listeOperation(String codeCompte, int page, int size);
-
+    public Collection<Compte> getAllCompte();
+    public Collection<Client> getAllClient();
+    public Collection<Compte> getCompteByClient(Long clientId);
 }

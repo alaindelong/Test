@@ -1,5 +1,6 @@
 package com.example.demo.metier;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.hamcrest.core.IsInstanceOf;
@@ -91,6 +92,25 @@ public class BanqueServiceImpl implements BanqueService {
 	@Override
 	public Page<Operation> listeOperation(String codeCompte, int page, int size) {
 		return operationDao.listeOperation(codeCompte, new PageRequest(page, size));
+	}
+
+	@Override
+	public Collection<Compte> getAllCompte() {
+		
+		return compteDao.findAll();
+		//return compteDao.getAllCompteEpargne();
+	}
+
+	@Override
+	public Collection<Client> getAllClient() {
+		
+		return clientDao.findAll();
+	}
+
+	@Override
+	public Collection<Compte> getCompteByClient(Long clientId) {
+		
+		return compteDao.getCompteByClient(clientId);
 	}
 
 }

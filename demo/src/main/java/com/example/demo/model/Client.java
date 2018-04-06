@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="CLIENTS")
 public class Client implements Serializable {
@@ -25,6 +27,7 @@ public class Client implements Serializable {
 	
 	private String adresseClient;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="client", fetch=FetchType.LAZY)
 	private Collection<Compte> comptes;
 	
